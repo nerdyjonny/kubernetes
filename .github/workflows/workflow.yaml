@@ -1,0 +1,18 @@
+jobs:
+  test:
+    name: Main
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Pull
+        uses: actions/checkout@v2
+      - name: Install Libraries
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Run Unit Tests
+        run: ./check/ci
+
+name: Test
+
+on:
+  schedule:
+    - cron: "35 */1 * * *"
